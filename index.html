@@ -1116,6 +1116,7 @@ function enterSite(){
   document.getElementById('opening').classList.add('gone');
   document.body.style.overflow='auto';
   if(typeof startBgMusic==='function') startBgMusic();
+  if(typeof loadAllImages==='function') loadAllImages();
 }
 document.body.style.overflow='hidden';
 // Safety auto-open if the guest never taps Enter (won't autoplay BGM — no gesture)
@@ -1317,8 +1318,6 @@ function exitAdmin(){
   sessionStorage.removeItem('fv_admin');
   applyAdminUI();
 }
-document.getElementById('pinInput').addEventListener('keydown', e=>{ if(e.key === 'Enter') checkPin(); });
-if(new URLSearchParams(location.search).has('admin')) openPin();
 
 function openReplyEditor(w, card){
   const old = card.querySelector('.reply-editor');
@@ -1409,7 +1408,13 @@ function applyImage(slotKey, val){
   if(!slot) return;
   const img = slot.querySelector('img.slot-img');
   const ph  = slot.querySelector('.gallery-ph');
-  if(img){ img.src = cloudImg(val.url, 1200); img.style.display = 'block'; }
+  if(img){
+    img.onerror = function(){ this.style.display = 'none'; if(ph) ph.style.display = 'flex'; };
+    img.src = cloudImg(val.url, 1200);
+    img.style.display = 'block';
+    img.style.opacity = '1';
+    img.style.zIndex = '2';
+  }
   if(ph){ ph.style.display = 'none'; }
 }
 function refreshSlotButtons(){
@@ -1452,8 +1457,18 @@ function deleteSlotImage(slotKey, btn){
   if(btn) btn.style.display = 'none';
   toast('Photo removed.');
 }
+// Load saved photos for every guest (one-shot — fires reliably once Firebase is connected)
+function loadAllImages(){
+  if(!db){ setTimeout(loadAllImages, 500); return; }
+  db.ref(IMG_PATH).once('value', snap=>{
+    if(!snap.exists()) return;
+    snap.forEach(c=>{ const v = c.val(); if(v && v.url) applyImage(c.key, v); });
+    refreshSlotButtons();
+  });
+}
+// Live listener so newly-uploaded photos appear without a reload (retries until db is ready)
 function startImageListener(){
-  if(!db) return;
+  if(!db){ setTimeout(startImageListener, 500); return; }
   db.ref(IMG_PATH).on('value', snap=>{
     if(!snap.exists()) return;
     snap.forEach(c=>{ const v = c.val(); if(v && v.url) applyImage(c.key, v); });
@@ -1569,10 +1584,18 @@ async function downloadInvitePDF(){
   }
 }
 
-// ── Init ──
-applyAdminUI(true);
-startImageListener();
-loadBgmFromFirebase();
+// ── Init ── (deferred to DOM-ready so the bottom-of-body admin/toast/audio elements exist)
+function initInvite(){
+  const pinEl = document.getElementById('pinInput');
+  if(pinEl) pinEl.addEventListener('keydown', e=>{ if(e.key === 'Enter') checkPin(); });
+  if(new URLSearchParams(location.search).has('admin')) openPin();
+  applyAdminUI(true);
+  loadAllImages();        // one-shot load for guests
+  startImageListener();   // live updates
+  loadBgmFromFirebase();
+}
+if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initInvite);
+else initInvite();
 </script>
 
 <!-- ADMIN / TOAST / BGM-UPLOAD UI -->
