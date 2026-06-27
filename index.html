@@ -215,9 +215,10 @@ nav{
 .photo-main{
   position:absolute;inset:0;
   object-fit:cover;width:100%;height:100%;object-position:center 15%;
-  opacity:0;transition:opacity 1.5s ease;
+  opacity:1;
 }
-.photo-main.active{opacity:1}
+/* fade is handled by the .photo-slide wrapper now */
+.photo-slide .photo-main.active{opacity:1}
 .photo-overlay{
   position:absolute;inset:0;
   background:linear-gradient(135deg,rgba(13,9,5,.3) 0%,transparent 60%,rgba(217,138,166,.08) 100%);
