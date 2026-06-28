@@ -78,17 +78,17 @@ body::before{
   animation:slideUp 0.9s cubic-bezier(.16,1,.3,1) forwards;
 }
 .open-text.t0{
-  font-style:italic;text-transform:none;letter-spacing:3px;
-  font-size:clamp(14px,3vw,20px);color:var(--gold);
-  animation-delay:.15s;margin-bottom:14px;
+  font-family:'EB Garamond',serif;text-transform:none;letter-spacing:normal;
+  font-size:clamp(20px,4.5vw,32px);color:var(--gold);line-height:1.6;direction:rtl;
+  animation-delay:.15s;margin-bottom:16px;
 }
 .open-text.t1{animation-delay:.45s}
 .open-text.t2{font-size:clamp(42px,9vw,80px);letter-spacing:4px;color:#fff;animation-delay:.75s;font-weight:700}
 .open-text.t3{animation-delay:1.05s;color:var(--gold)}
 .open-text.t4{
-  font-style:italic;text-transform:none;letter-spacing:3px;
-  font-size:clamp(13px,2.6vw,18px);color:var(--goldl);
-  animation-delay:1.5s;margin-top:14px;
+  font-family:'EB Garamond',serif;text-transform:none;letter-spacing:normal;
+  font-size:clamp(20px,4.5vw,30px);color:var(--goldl);line-height:1.6;direction:rtl;
+  animation-delay:1.5s;margin-top:16px;
 }
 .open-divider{width:0;height:1px;background:var(--gold);animation:expandW 1s ease forwards 1.35s;margin:16px 0}
 @keyframes slideUp{to{transform:translateY(0)}}
@@ -842,12 +842,12 @@ body.admin-on #bgmUploadBtn{display:flex;}
 
 <!-- ── OPENING SCREEN ── -->
 <div id="opening">
-  <div class="open-line"><div class="open-text t0">Bismillahi Rahmani Raheem</div></div>
+  <div class="open-line"><div class="open-text t0">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div></div>
   <div class="open-line"><div class="open-text t1">— A Nikah Invitation —</div></div>
   <div class="open-line"><div class="open-text t2">V & F</div></div>
   <div class="open-divider"></div>
   <div class="open-line"><div class="open-text t3">26 · August · 2026</div></div>
-  <div class="open-line"><div class="open-text t4">Alhamdulillah</div></div>
+  <div class="open-line"><div class="open-text t4">الْحَمْدُ لِلَّٰه</div></div>
   <button class="open-btn" onclick="enterSite()">Enter ↗</button>
 </div>
 
