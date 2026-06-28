@@ -782,64 +782,54 @@ body.admin-on #bgmUploadBtn{display:flex;}
   .reveal{opacity:1 !important;transform:none !important;}
 }
 
-/* ── DRESS CODE SECTION (pastel — non-pink palette) ── */
+/* ── DRESS CODE CARD (compact, pastel — non-pink palette) ── */
 .dresscode-section{
-  background:var(--ivory);
-  padding:90px 0;
+  background:var(--cream);
+  padding:46px 24px;
+  display:flex;justify-content:center;
 }
-.dc-inner{max-width:760px;margin:0 auto;padding:0 40px;}
 .dresscode-card{
-  margin-top:50px;
-  background:linear-gradient(145deg,#f3f7f1 0%,#eef0f8 48%,#f1f0f6 100%);
+  width:100%;max-width:420px;
+  background:linear-gradient(145deg,#f3f7f1 0%,#eef0f8 50%,#f1f0f6 100%);
   border:1px solid #e5e9e7;
-  border-radius:18px;
-  padding:46px 40px;
-  box-shadow:0 12px 44px rgba(70,80,90,.07);
-  position:relative;overflow:hidden;
+  border-radius:16px;
+  padding:24px 26px;
+  box-shadow:0 8px 28px rgba(70,80,90,.08);
+  position:relative;overflow:hidden;text-align:center;
 }
 .dresscode-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,#bcd0c0,#cdbfe2,#bcd4e6,#b9e0d2,#ece0c6);
 }
-.dcc-head{text-align:center;margin-bottom:36px;}
-.dcc-icon{font-size:30px;display:block;margin-bottom:14px;}
 .dcc-eyebrow{
-  font-family:'Didact Gothic',sans-serif;font-size:10px;letter-spacing:5px;
+  font-family:'Didact Gothic',sans-serif;font-size:9px;letter-spacing:4px;
   text-transform:uppercase;color:#8aa192;
+}
+.dcc-title{
+  font-family:'Playfair Display',serif;font-size:20px;font-weight:700;
+  color:#5a665d;margin:6px 0 4px;
 }
 .dcc-note{
   font-family:'EB Garamond',serif;font-style:italic;
-  font-size:clamp(15px,2.2vw,18px);color:#5d6b62;
-  line-height:1.7;margin-top:12px;
+  font-size:14px;color:#6b766f;line-height:1.6;margin-bottom:18px;
 }
 .dcc-swatches{
-  display:grid;grid-template-columns:repeat(6,1fr);gap:18px;
+  display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
 }
-.dcc-swatch{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.dcc-swatch{display:flex;flex-direction:column;align-items:center;gap:6px;}
 .dcc-swatch .sw{
-  width:100%;aspect-ratio:1;border-radius:50%;
-  box-shadow:inset 0 0 0 1px rgba(0,0,0,.05),0 5px 16px rgba(0,0,0,.08);
+  width:30px;height:30px;border-radius:50%;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.05),0 3px 9px rgba(0,0,0,.08);
   transition:transform .3s ease;
 }
-.dcc-swatch:hover .sw{transform:translateY(-4px) scale(1.04);}
+.dcc-swatch:hover .sw{transform:translateY(-3px) scale(1.08);}
 .dcc-swatch em{
   font-family:'Didact Gothic',sans-serif;font-style:normal;
-  font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#7a857d;
+  font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#869089;
 }
-.dcc-foot{
-  margin-top:36px;padding-top:26px;
-  border-top:1px solid rgba(120,140,130,.18);
-  text-align:center;
-}
-.dcc-foot p{
-  font-family:'EB Garamond',serif;font-size:15px;color:#6b766f;line-height:1.8;
-}
-.dcc-foot p strong{color:#4f5d54;font-weight:500;}
 @media(max-width:600px){
-  .dresscode-section{padding:70px 0;}
-  .dcc-swatches{grid-template-columns:repeat(3,1fr);gap:24px 14px;}
-  .dresscode-card{padding:34px 22px;}
-  .dc-inner{padding:0 20px;}
+  .dcc-swatches{gap:10px;}
+  .dcc-swatch .sw{width:26px;height:26px;}
 }
 </style>
   <!-- Firebase Compat SDK (must load before main script) -->
@@ -1039,38 +1029,6 @@ body.admin-on #bgmUploadBtn{display:flex;}
   </div>
 </section>
 
-<!-- ── DRESS CODE ── -->
-<section class="dresscode-section" id="dresscode">
-  <div class="dc-inner">
-    <div class="reveal">
-      <p class="s-label">A Gentle Note</p>
-      <h2 class="s-title">Dress code<br><em>&amp; palette</em></h2>
-      <div class="s-rule"></div>
-    </div>
-
-    <div class="dresscode-card reveal">
-      <div class="dcc-head">
-        <span class="dcc-icon">🕊️</span>
-        <span class="dcc-eyebrow">Suggested Pastel Shades</span>
-        <p class="dcc-note">We would be delighted to see you dressed in soft pastel tones to grace our celebration.</p>
-      </div>
-
-      <div class="dcc-swatches">
-        <div class="dcc-swatch"><span class="sw" style="background:#bcd0c0"></span><em>Sage</em></div>
-        <div class="dcc-swatch"><span class="sw" style="background:#cdbfe2"></span><em>Lavender</em></div>
-        <div class="dcc-swatch"><span class="sw" style="background:#bcd4e6"></span><em>Powder Blue</em></div>
-        <div class="dcc-swatch"><span class="sw" style="background:#b9e0d2"></span><em>Mint</em></div>
-        <div class="dcc-swatch"><span class="sw" style="background:#ece0c6"></span><em>Champagne</em></div>
-        <div class="dcc-swatch"><span class="sw" style="background:#e3d4be"></span><em>Sand</em></div>
-      </div>
-
-      <div class="dcc-foot">
-        <p>Kindly dress <strong>modestly &amp; elegantly</strong> in keeping with the occasion —<br>traditional or formal attire is most welcome.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── FAMILY SECTION ── -->
 <section class="family-section" id="family">
   <div class="family-inner">
@@ -1146,6 +1104,22 @@ body.admin-on #bgmUploadBtn{display:flex;}
       "He is the One Who created you from a single soul and made from it its mate, that he might live with her in tranquillity."<br>
       — Quran [7:189]
     </p>
+  </div>
+</section>
+
+<!-- ── DRESS CODE (compact card) ── -->
+<section class="dresscode-section" id="dresscode">
+  <div class="dresscode-card reveal">
+    <span class="dcc-eyebrow">Dress Code</span>
+    <h3 class="dcc-title">Pastel Palette</h3>
+    <p class="dcc-note">Kindly grace us in soft pastel shades.</p>
+    <div class="dcc-swatches">
+      <div class="dcc-swatch"><span class="sw" style="background:#bcd0c0"></span><em>Sage</em></div>
+      <div class="dcc-swatch"><span class="sw" style="background:#cdbfe2"></span><em>Lavender</em></div>
+      <div class="dcc-swatch"><span class="sw" style="background:#bcd4e6"></span><em>Blue</em></div>
+      <div class="dcc-swatch"><span class="sw" style="background:#b9e0d2"></span><em>Mint</em></div>
+      <div class="dcc-swatch"><span class="sw" style="background:#ece0c6"></span><em>Champagne</em></div>
+    </div>
   </div>
 </section>
 
